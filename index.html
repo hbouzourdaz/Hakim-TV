@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="حمّل تطبيق Hakim TV مجانًا لمشاهدة البث المباشر للمباريات والقنوات الرياضية بجودة عالية.">
+    
+    <!-- SEO & Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hakim TV | البث المباشر الرياضي والمحتوى الترفيهي">
+    <meta property="og:description" content="التطبيق الأفضل لمتابعة القنوات الرياضية والمباريات بث مباشر بدون تقطيع، مجاناً وبأعلى جودة على جميع أجهزة أندرويد.">
+    <meta property="og:image" content="./screenshots/screen2.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hakim TV | البث المباشر الرياضي">
+    <meta name="twitter:description" content="التطبيق الأفضل لمتابعة القنوات الرياضية والمباريات بث مباشر بدون تقطيع، مجاناً وبأعلى جودة على جميع أجهزة أندرويد.">
+    <meta name="twitter:image" content="./screenshots/screen2.png">
     <title>Hakim TV | البث المباشر الرياضي</title>
     
     <!-- Favicon -->
@@ -61,15 +71,44 @@
             box-shadow: 0 0 30px rgba(109, 40, 217, 0.7);
             transform: translateY(-2px);
         }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        /* Hide scrollbar for slider */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Custom scrollbar for page */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        /* Preloader Animation */
+        @keyframes loading-bar {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-loading {
+            animation: loading-bar 1.5s infinite linear;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-sport-purple selection:text-white antialiased">
+<body class="bg-[#050505] text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-sport-neon selection:text-white overflow-y-hidden">
+    
+    <!-- Page Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center transition-opacity duration-700 ease-in-out">
+        <h1 class="logo-text text-5xl text-white tracking-widest uppercase mb-6 animate-pulse">Hakim<span class="text-sport-neon">TV</span></h1>
+        <div class="w-48 h-1 bg-white/10 rounded-full overflow-hidden relative">
+            <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-sport-purple via-sport-neon to-sport-purple animate-loading w-full"></div>
+        </div>
+    </div>
+    
+    <!-- Interactive Glow Background -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none opacity-40">
+        <div id="glow-circle" class="absolute w-[600px] h-[600px] bg-sport-purple/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out hidden lg:block"></div>
+        <!-- Ambient static glows for mobile -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-sport-purple/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sport-neon/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2"></div>
+    </div>
 
-    <!-- Header -->
+    <!-- Navigation -->
     <header class="w-full py-6 px-8 flex justify-between items-center z-50 fixed top-0 bg-[#050505]/90 backdrop-blur-xl border-b border-white/[0.03]">
         <a href="#" class="logo-text text-2xl text-white tracking-widest uppercase">Hakim<span class="text-sport-neon">TV</span></a>
         <a href="#download" class="bg-gradient-to-r from-sport-purple to-[#3b0764] text-white hover:shadow-lg hover:shadow-sport-purple/30 px-6 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 flex items-center gap-2 border border-white/10">
@@ -186,6 +225,49 @@
             </div>
         </section>
 
+        <!-- FAQ Section -->
+        <section class="max-w-3xl mx-auto px-6 py-24 border-t border-white/[0.03]">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light mb-4">الأسئلة <span class="font-bold text-sport-neon">الشائعة</span></h2>
+                <p class="text-gray-500 text-sm font-light">كل ما تود معرفته عن التطبيق.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-[#0a0a0c] border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10 faq-item">
+                    <button class="w-full px-6 py-5 text-right flex items-center justify-between focus:outline-none faq-button">
+                        <span class="font-medium text-white text-sm lg:text-base">هل التطبيق مجاني بالكامل؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 text-sm transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="px-6 pb-5 text-gray-400 text-sm font-light leading-relaxed hidden faq-content">
+                        نعم، تطبيق Hakim TV مجاني 100% ولا يتطلب أي اشتراكات مدفوعة أو إدخال بطاقات ائتمان لمشاهدة المحتوى.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-[#0a0a0c] border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10 faq-item">
+                    <button class="w-full px-6 py-5 text-right flex items-center justify-between focus:outline-none faq-button">
+                        <span class="font-medium text-white text-sm lg:text-base">هل يعمل التطبيق على الشاشات الذكية (Smart TV)؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 text-sm transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="px-6 pb-5 text-gray-400 text-sm font-light leading-relaxed hidden faq-content">
+                        التطبيق متوافق ومصمم ليعمل بكفاءة على هواتف وأجهزة أندرويد اللوحية. كما يدعم أجهزة التلفاز بنظام Android TV و Fire TV، ويمكنك ربط البث من الهاتف للشاشة بسهولة.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-[#0a0a0c] border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/10 faq-item">
+                    <button class="w-full px-6 py-5 text-right flex items-center justify-between focus:outline-none faq-button">
+                        <span class="font-medium text-white text-sm lg:text-base">كيف أقوم بتحديث التطبيق مستقبلاً؟</span>
+                        <i class="fas fa-chevron-down text-gray-500 text-sm transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="px-6 pb-5 text-gray-400 text-sm font-light leading-relaxed hidden faq-content">
+                        يحتوي التطبيق على نظام تنبيه تلقائي يخبرك فور توفر تحديث جديد. بالإضافة لذلك، يمكنك دائماً العودة إلى هذه الصفحة الرسمية وتحميل أحدث نسخة متوفرة بكل سهولة.
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Minimal Download Section -->
         <section id="download" class="py-24 relative overflow-hidden border-t border-white/[0.03]">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] -z-10"></div>
@@ -230,5 +312,52 @@
         <p class="text-xs text-gray-500 font-light mt-4">&copy; 2026 Hakim BOUZOURDAZ. جميع الحقوق محفوظة.</p>
     </footer>
 
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            // Give it a brief moment to ensure animations show
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.classList.remove('overflow-y-hidden'); // Allow scrolling
+                }, 700);
+            }, 800);
+        });
+
+        // Interactive Mouse Glow Tracking
+        const glowCircle = document.getElementById('glow-circle');
+        if (glowCircle) {
+            document.addEventListener('mousemove', (e) => {
+                requestAnimationFrame(() => {
+                    glowCircle.style.left = e.clientX + 'px';
+                    glowCircle.style.top = e.clientY + 'px';
+                });
+            });
+        }
+
+        // FAQ Accordion Logic
+        const faqButtons = document.querySelectorAll('.faq-button');
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.faq-icon');
+                const isHidden = content.classList.contains('hidden');
+                
+                // Close all other FAQs for a clean accordion effect
+                document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.faq-icon').forEach(el => el.classList.remove('rotate-180', 'text-sport-neon'));
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('border-sport-neon/30'));
+
+                // Open the clicked one if it was hidden
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180', 'text-sport-neon');
+                    button.parentElement.classList.add('border-sport-neon/30');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
